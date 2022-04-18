@@ -1,0 +1,101 @@
+<div class="main" th:fragment="laptops">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3"></div>
+				<div class="col-md-9">
+					<section class="product-content clearfix">
+						<h1 class="title clearfix"><span>PHỤ KIỆN & LINH KIỆN LAPTOP</span></h1>
+						<!--========================begin: mục trang sp ==============================================-->
+							<nav class="navbar navbar-default product-filter">
+								<ul class="display">
+									<li id="grid" class="active grid"><a href="#" title="Grid"><i class="fa fa-th-large"></i></a></li>
+									<li id="list" class="list"><a href="#" title="List"><i class="fa fa-th-list"></i></a></li>
+								</ul>
+								<div class="limit">
+									<span>Sản phẩm/trang</span>
+									<select id="lblimit" name="lblimit" class="nb_item" onchange="window.location.href = this.options[this.selectedIndex].value">
+												<option>10</option>
+												<option>12</option>
+												<option selected="selected" value="?limit=20">20</option>
+												<option>50</option>
+												<option>100</option>
+												<option>250</option>
+									</select>
+								</div>
+								<div class="sort">
+									<span>Sắp xếp</span>
+									<select class="selectProductSort" id="lbsort" onchange="window.location.href = this.options[this.selectedIndex].value">
+												<option>Mặc định</option>
+												<option>Giá tăng dần</option>
+												<option>Giá giảm dần</option>
+												<option>Tên sản phẩm: A to Z</option>
+												<option>Tên sản phẩm: Z to A</option>
+									</select>
+								</div>
+							</nav>
+						<!--========================end:  mục trang sp  ==============================================-->
+						<!--==========================begin: Item sản phẩm===================================-->	
+							<div class="product-block product-grid row clearfix">								
+									<div class="col-md-3 col-sm-3 col-xs-12 product-resize product-item-box fixheight" style="height: 442px;">
+										<div class="product-item">
+											<div class="image image-resize" style="height: 265px;">
+												<a href="san-pham/tui-xach-thoi-trang-cao-cap-marksaxton-ms01.html" title="1 cái USB???">
+													<img src="client/images/04.jpg" class="img-responsive">
+												</a>
+												<a class="hover-image" href="san-pham/tui-xach-thoi-trang-cao-cap-marksaxton-ms01.html">
+													<img src="client/images/04.jpg" class="img-responsive">
+												</a>
+												<div class="view-more clearfix">
+													<a href="san-pham/tui-xach-thoi-trang-cao-cap-marksaxton-ms01.html" class="btn-quickview">Xem thêm</a>
+												</div>
+													<span class="promotion">-10%</span>
+											</div>
+											<div class="right-block">
+												<h2 class="name">
+													<a href="san-pham/tui-xach-thoi-trang-cao-cap-marksaxton-ms01.html" title="1 cái USB???">1 cái USB???</a>
+												</h2>
+												<div class="ratings clearfix">
+													<div class="rating-box">
+														<div class="rating"></div>
+													</div>
+												</div>
+												<div class="price">
+														<span class="price-new">247.500&nbsp;₫</span>
+														<span class="price-old">275.000&nbsp;₫</span>
+												</div>
+												<div class="box-inner clearfix">
+													<ul class="add-to-links">
+														<li><a class="add-cart" href="javascript:void(0)" onclick="AddToCard(3329,1)"></a></li>
+														<li><a class="add-wishlist" href="#"></a></li>
+														<li><a class="add-compare" href="#"></a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>												
+							</div>
+							<!--==========================end: Item sản phẩm===================================-->
+							<!--========================== begin: phân trang ===================================-->
+							<div class="navigation">
+									<ul class="pagination">
+										<li>
+											<a href="trangchu.html" aria-label="Previous">
+												<span aria-hidden="true">«</span>
+											</a>
+										</li>
+												<li class="active"><a href="trangchu.html">1</a></li>
+												<li><a href="trang2.html">2</a></li>
+												<li><a href="trang3.html">3</a></li>
+										<li>
+											<a href="trang3.html" aria-label="Next">
+												<span aria-hidden="true">»</span>
+											</a>
+										</li>
+									</ul>
+							</div>
+							<!--========================== end: phân trang ===================================-->
+					</section>						
+                </div>
+            </div>
+        </div>
+    </div>

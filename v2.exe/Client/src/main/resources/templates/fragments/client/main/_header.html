@@ -1,0 +1,181 @@
+<div class="header" th:fragment="header">
+		<!-- ======================= header login, giỏ hàng ================================ -->
+		<section class="top-link clearfix" style="background:#333333;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" >
+						<ul class="nav navbar-nav topmenu-contact pull-left">
+							<li><i class="fa fa-phone"></i><span> Hotline:0965 915 401</span></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm" th:unless="${session.user ne null}">
+							<li><a th:href="@{/auth/login}"><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></li>
+							<li><a th:href="@{/auth/register}"><i class="fa fa-key"></i> Đăng ký </a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right topmenu  hidden-xs hidden-sm" th:if="${session.user ne null}">
+							<li><p href="#" th:text="${'Xin chào '+ userinfo.userName}" th:with="userinfo=${session.user}" style="color: white"></p></li>
+							<li><a href="#"><i class="fas fa-pencil-alt"></i> Thông tin cá nhân</a></li>
+							<li><a th:href="@{/auth/logout}"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+							<!-- <div th:text="${session.user}"></div> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- ===========================header logo, tìm kiếm, giỏ hàng ================ -->
+		<section class="header-content clearfix">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-xs-12 col-sm-12 header-left text-center">
+							<div class="logo">
+								<a href="/" title="">
+									<img alt="" th:src="@{/client/images/logo.png}" class="img-responsive">
+								</a>
+							</div>
+						</div>
+
+						<div class="col-md-8 col-xs-12 col-sm-12 header-right pull-right">
+		<!--=========== phần giỏ hàng ============================-->
+							<div class="cart">
+								<div class="heading">
+									<a th:href="@{/cart}">
+										<span class="icon" style="width: -20%">icon</span>
+											<span id="cart-total">Giỏ hàng</span>
+											<i class="fa fa-arrow-right"></i>
+									</a>
+								</div>
+							</div>
+<!--							 =========== phần tìm kiếm========================= -->
+							<div class="search hidden-sm hidden-xs">
+								<div class="input-cat form-search clearfix">
+									<div class="form-search-controls">
+										<input type="text" name="search" id="txtsearch" onblur="if(this.value=='')this.value='Tìm kiếm...'" onfocus="if(this.value=='Tìm kiếm...')this.value=''" value="Tìm kiếm...">
+
+									</div>
+									<button class="btn btn-search" title="Search" type="button" id="btnsearch" value="Search">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+		</section>
+<!--==================            Menu                    ===========================-->
+	<section class="navigation-menu clearfix">
+		<div class="container">
+			<div class="menu-top">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="menu-cate menu-quick-select">
+							<div class="menu-cate-title">
+								<span><i class="fa fa-th-list"></i><a href="#">Danh mục sản phẩm</a></span>
+								<i class="fa fa-chevron-circle-down"></i>
+							</div>
+	<!-- ============		Danh sách sản phẩm 	======= -->
+							<ul class="menu-cate-content" >
+									<li>
+										<a href="#"><i class="fa fa-leaf"></i>Laptop<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+											<div class="sub-menu hidden-xs">
+												<ul class="">
+														<li>
+															<a href="#">Asus</a>
+														</li>
+														<li>
+															<a href="#">Dell</a>
+														</li>
+												</ul>
+											</div>
+									</li>
+									<li>
+										<a href="#"><i class="fa fa-globe"></i>Ram, ổ cứng<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+											<div class="sub-menu hidden-xs">
+												<ul class="colum0">
+														<li>
+															<a href="#">Ram</a>
+														</li>
+												</ul>
+												<ul class="colum1">
+														<li>
+															<a href="#">Ổ cứng</a>
+														</li>
+												</ul>
+											</div>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-gratipay"></i>Phụ kiện<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+											<div class="sub-menu hidden-xs">
+												<ul class="colum0">
+														<li>
+															<a href="#">Chuột</a>
+														</li>
+												</ul>
+												<ul class="colum1">
+														<li>
+															<a href="#">Tai nghe</a>
+														</li>
+												</ul>
+											</div>
+									</li>
+									<li>
+										<a href="#"><i class="fa fa-suitcase"></i>Màn hình<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+											<div class="sub-menu hidden-xs">
+												<ul class="colum0">
+														<li>
+															<a href="#">Màn 14in</a>
+														</li>
+												</ul>
+												<ul class="colum1">
+														<li>
+															<a href="#">Màn 15'6in</a>
+														</li>
+												</ul>
+											</div>
+									</li>
+									<li>
+										<a href="#"><i class="fa fa-bullhorn"></i>Loa &amp; phụ kiện<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+									</li>
+									<li>
+										<a href="#"><i class="far fa-bookmark"></i>Khác<span class="arrow-menu"><i class="fa fa-chevron-right "></i></span></a>
+									</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-9 ">
+						<nav class="navbar nav-menu">
+							<div class="navbar-header">
+								<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+							<nav id="mobile-menu" class="mobile-menu collapse navbar-collapse">
+								<ul class="menu nav navbar-nav">
+								  <li class="level0 active"><a class="" th:href="@{/}"><span>Trang chủ</span></a></li>
+									<li class="level0"><a class="" th:href="@{/laptop}"><span>Laptop</span></a></li>
+									<li class="level0"><a class="" th:href="@{/pc-component}"><span>Phụ kiện</span></a></li>
+									<li class="level0"><a class="" th:href="@{/info}"><span>Giới thiệu</span></a></li>
+									<li class="level0"><a class="" href="#"><span>Liên hệ</span></a></li>
+								</ul>
+							</nav>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var str = location.href.toLowerCase();
+			$("ul.menu li a").each(function () {
+				if (str.indexOf(this.href.toLowerCase()) >= 0) {
+					$("ul.menu li").removeClass("active");
+					$(this).parent().addClass("active");
+				}
+			});
+		});
+	</script>
+		
+	</div>

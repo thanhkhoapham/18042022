@@ -1,0 +1,89 @@
+<div class="nav-md" th:fragment="form-add-user">
+	<div class="container body">
+		<div class="main_container">
+			<div class="right_col" role="main" style="min-height: 792px;">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>
+							Người dùng mới <small></small>
+						</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12 offset-md-12">
+							<a href="/admin/user" type="button" class="btn btn-primary">Quay
+								lại</a>
+						</div>
+					</div>
+					<div class="x_content">
+
+						<form class="/addUser" action="" method="post" th:object="user">
+
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Tên
+									người dùng<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" data-validate-length-range="6"
+										data-validate-words="2" name="name"
+										placeholder="ex. John f. Kennedy" required="required">
+								</div>
+							</div>
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Email<span
+									class="required">*</span></label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" name="email" required="required"
+										type="email">
+								</div>
+							</div>
+
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Địa
+									chỉ<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" type="text" id="address"
+										name="diaChi" pattern="(+\s)" title="Not null">
+								</div>
+							</div>
+
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Mật
+									khẩu <small> (mặc định: 123456)</small><span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" value="123456" type="password"
+										id="password1" name="password"
+										pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*]).{8,}"
+										title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character">
+								</div>
+							</div>
+							<div class="field item form-group">
+								<label class="col-form-label col-md-3 col-sm-3  label-align">Số
+									điện thoại<span class="required">*</span>
+								</label>
+								<div class="col-md-6 col-sm-6">
+									<input class="form-control" type="text" id="phone-number"
+										name="phoneNumber" pattern="(*\d){8,}"
+										title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character">
+								</div>
+							</div>
+
+
+
+							<div class="ln_solid">
+								<div class="form-group">
+									<div class="col-md-6 offset-md-3">
+										<button type="submit" class="btn btn-primary">Thêm</button>
+										<button type="reset" class="btn btn-success">Reset</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

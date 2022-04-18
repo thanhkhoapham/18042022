@@ -1,0 +1,34 @@
+<div class="container" th:fragment="slide">		
+		<div class="row">
+        	<div class="col-md-3"></div>
+            <div class="col-md-9 ">
+					<!--Begin-->
+				<div class="owl-carousel owl-theme" >
+						<div class="item" >
+							<img alt="" class="img-responsive" style="width:1200px;height:460px;" src="client/images/slider01.jpg" >
+						</div>
+						<div class="item" >
+							<img alt="" class="img-responsive" src="client/images/slider03.jpg" >
+						</div>												
+				</div>
+				<script>
+							$('.owl-carousel').owlCarousel({
+								loop:true,
+								
+								dots:false,
+								items:1,
+								autoplay:true,
+								pagination: false,
+								slideSpeed: 1000,
+								autoplayHoverPause:true,
+								
+								480 : {
+									items : 1,
+									dots:false,
+									autoWidth:true,
+								},
+							});
+				</script>
+			</div>
+		</div>
+	</div>

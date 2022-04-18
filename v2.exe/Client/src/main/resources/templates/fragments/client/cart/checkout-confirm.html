@@ -1,0 +1,76 @@
+<div class="container" th:fragment="checkout-confirm">
+	 <div class="container">
+            <div class="row">
+            	<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<th:block th:if="${gioHang.donHangForm.phuongThuc} eq 'paypal'">
+						<form method="post" th:action="@{/createPayment}">
+							<input type="hidden" th:value="${#numbers.formatDecimal(tongTien_dollar, 0, 'COMMA', 2, 'POINT')}" name="price" />
+					</th:block>
+				   <th:block th:if="${gioHang.donHangForm.phuongThuc} eq 'TTtructiep'"><form method="post" th:action="@{/sendOrderInfo}">
+					</th:block>
+				    	<div class="cart-content ng-scope" >
+							<h1 class="title"><span>Thông tin đơn hàng</span></h1>
+							<ul> 
+					            <li style="font-size:16px">Tên khách hàng: <span th:utext="${gioHang.donHangForm.tenNguoiDung}"></span></li>
+					            <li style="font-size:16px">Email: <span th:utext="${gioHang.donHangForm.email}"></span></li>
+					            <li style="font-size:16px">Số điện thoại: <span th:utext="${gioHang.donHangForm.soDienThoai}"></span></li>
+					            <li style="font-size:16px">Địa chỉ: <span th:utext="${gioHang.donHangForm.diaChi}"></span></li>
+					            <li style="font-size:16px">
+					            	<span>Tổng thanh toán:</span> <strong th:text="${#numbers.formatDecimal(gioHang.donHangForm.tongTien, 0, 'COMMA', 0, 'POINT') +' đ'}"></strong>
+									<small class="text-muted" th:text="${'('+ #numbers.formatDecimal(tongTien_dollar, 0, 'COMMA', 2, 'POINT') +' $)'}"></small>
+					            </li>
+					            <li style="font-size:16px">Phương thức thanh toán: 
+									<span th:if="${gioHang.donHangForm.phuongThuc} eq 'paypal'" >PayPal</span>
+								    <span th:if="${gioHang.donHangForm.phuongThuc} eq 'TTtructiep'">Thanh toán trực tiếp</span>
+					           	</li>
+					           	
+					         </ul>
+						</div><br>
+						
+						<div class="cart-content ng-scope">
+							<h1><span>Giỏ hàng</span></h1>
+							<div class="cart-block">
+								<div class="cart-info table-responsive">
+									<table class="table product-list">
+										<thead>
+											<tr>
+												<th>Sản phẩm</th>
+												<th>Hình ảnh</th>
+												<th>Giá</th>
+												<th>Số lượng</th>
+												<th>Thành tiền</th>
+											</tr>										
+										</thead>
+										
+										<th:block th:each="CTGioHang, varStatus : ${gioHang.dsCT}" >
+											<tr>
+												<th th:text="${CTGioHang.sanPham.tenSanPham}"></th>
+												
+												<th><img style="height: 10em;width: 30en;" th:src="${CTGioHang.sanPham.UrlHinhAnh}" 
+													class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></th>
+													
+												<th th:text="${#numbers.formatDecimal(CTGioHang.sanPham.gia, 0, 'COMMA', 0, 'POINT') +' đ'}"></th>
+												
+												<th th:text="${CTGioHang.soLuong}"></th>
+												
+												<th th:text="${#numbers.formatDecimal(CTGioHang.thanhTien, 0, 'COMMA', 0, 'POINT') +' đ'}"></th>
+												
+											</tr>
+										</th:block>
+									</table>
+									
+								</div>
+								
+							</div>
+						</div>
+						
+						<div class="button text-right">
+							<input type="submit" class="btn btn-primary" value="Xác nhận đặt hàng"/>
+							<a class="btn btn-primary" href="/checkout">Quay lại</a>
+						</div>
+					</form>
+				</div>
+            </div>
+        </div>
+</div>

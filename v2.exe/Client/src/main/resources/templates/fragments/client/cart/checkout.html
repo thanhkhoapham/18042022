@@ -1,0 +1,100 @@
+<div class="container" th:fragment="checkout">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9">
+		<form method="POST" th:object="${donHangForm}" th:action="@{/checkout}">
+			<div class="col-md-4 order-md-2 mb-4">
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<span class="text-muted">Giỏ hàng của bạn</span> 
+					<span class="badge badge-secondary badge-pill" th:text="${gioHang.dsCT.size}"></span>
+				</h4><br>
+				<ul class="list-group mb-3">
+					<th:block th:each="CTGioHang, varStatus : ${gioHang.dsCT}" >
+						<li
+							class="list-group-item d-flex justify-content-between lh-condensed">
+							<div>
+								<h5 class="my-0" th:text="${CTGioHang.sanPham.tenSanPham}"></h5>
+								<small class="text-muted" th:text="${'Số lượng: ' + CTGioHang.soLuong}"></small>
+							</div> 
+							<span class="text-muted" th:text="${#numbers.formatDecimal(CTGioHang.thanhTien, 0, 'COMMA', 0, 'POINT') +' đ'}"></span>
+						</li>
+					</th:block>
+					<li class="list-group-item d-flex justify-content-between">
+						<span>Tổng thanh toán:</span>
+							<strong th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT') +' đ'}" ></strong>
+							<input type="hidden"
+								th:value="${tongTien}"
+								th:name="|tongTien|">
+							<small class="text-muted" th:text="${'('+ #numbers.formatDecimal(tongTien_dollar, 0, 'COMMA', 2, 'POINT') +' $)'}"></small>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-8 order-md-1">
+				
+				<h4 class="mb-3">Thông tin khách hàng</h4><br>
+				<!-- <form class="needs-validation" novalidate th:action="@{/pay}"> -->
+					<div class="row">
+						<input type="hidden"
+								th:value="${nguoiDung.id}"
+								th:name="|nguoiDungId|">
+						
+						<div class="col-md-6 mb-3">
+							<label for="firstName">Tên của bạn: </label> 
+							<input type="text" class="form-control" id="fullname"
+									th:value="${nguoiDung.tenNguoiDung}"
+									th:name="|tenNguoiDung|" required>
+							<!-- <div class="invalid-feedback">Vui lòng nhập tên</div> -->
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="lastName">Số điện thoại:</label> 
+							<input type="text" class="form-control" id="phone-numbers"
+									th:value="${nguoiDung.soDienThoai}"
+									th:name="|soDienThoai|" required>
+							<!-- <div class="invalid-feedback">Vui lòng để lại số điện thoại </div> -->
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="email">Email</label> 
+						<input type="email" class="form-control" id="email"
+								th:value="${nguoiDung.email}"
+								th:name="|email|" readonly>
+					</div>
+
+					<div class="mb-3">
+						<label for="address">Địa chỉ:</label>
+						<input type="text" class="form-control" id="address"
+								th:value="${nguoiDung.diaChi}"
+								th:name="|diaChi|" required >
+						<!-- <div class="invalid-feedback">Vui lòng địa chỉ giao hàng:</div> -->
+					</div>
+
+					<hr class="mb-4">
+
+					<h4 class="mb-3">Phương thức thanh toán</h4>
+
+					<div class="d-block my-3">
+						<div class="custom-control custom-radio">
+							<input checked type="radio" id="paypal" name="paymentMethod" value="paypal" th:name="|phuongThuc|">
+							<label for="paypal">PayPal</label><br>
+							<input type="radio" id="TTtructiep" name="paymentMethod" value="TTtructiep" th:name="|phuongThuc|">
+  							<label for="TTtructiep">Thanh toán khi nhận hàng</label><br>  
+						</div>
+					</div><br>
+					
+					<div id="errors" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+					    <p style="color: red">Thanh toán đã bị hủy!!</p>
+					</div>
+					
+					<!-- <input type="hidden" th:value="${#numbers.formatDecimal(tongTien_dollar, 0, 'COMMA', 2, 'POINT')}" name="price" /> -->
+					<input type="submit" class="btn btn-primary btn-lg btn-block" value="Đặt hàng">
+					<a th:href="@{/cart}">
+					 	<input type="button" class="btn btn-primary btn-lg btn-block" value="Quay lại giỏ hàng">
+					</a> 
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	
+</div>

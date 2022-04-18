@@ -1,0 +1,104 @@
+<div class="main" th:fragment="cart">
+        <div class="container">
+            <div class="row">
+            	<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<div class="breadcrumb clearfix">
+						<ul>
+							<li class="home">
+								<a title="Đến trang chủ" href="../home.html" itemprop="url"><span itemprop="title">Trang chủ</span></a>
+							</li>
+							<li>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></li>
+							<li class="icon-li"><strong>Giỏ hàng</strong> </li>
+						</ul>
+					</div>
+					
+					<th:block th:if="${gioHang == null || gioHang.dsCT == null || gioHang.dsCT.empty}">
+				         <h2>Không có món hàng nào trong giỏ</h2>
+				         <a th:href="@{/}">Về trang chủ</a>
+				    </th:block>
+				    
+				    <th:block th:if="${gioHang != null && gioHang.dsCT != null && !gioHang.dsCT.empty}">
+				    	<form method="post" th:object="${gioHang}" th:action="@{/updateCart}">
+				    	
+				    	<div class="cart-content ng-scope" >
+							<h1 class="title"><span>Giỏ hàng của tôi</span></h1>
+							<div class="cart-block">
+								
+								<div class="cart-info table-responsive">
+									<table class="table product-list">
+										<thead>
+											<tr>
+												<th>Sản phẩm</th>
+												<th>Hình ảnh</th>
+												<th>Giá</th>
+												<th>Số lượng</th>
+												<th>Thành tiền</th>
+												<th></th>
+											</tr>										
+										</thead>
+										
+										<th:block th:each="CTGioHang, varStatus : ${gioHang.dsCT}" >
+											<tr>
+												<th th:text="${CTGioHang.sanPham.tenSanPham}"></th>
+												
+												<th><img style="height: 10em;width: 30en;" th:src="${CTGioHang.sanPham.UrlHinhAnh}" 
+													class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""></th>
+													
+												<th th:text="${#numbers.formatDecimal(CTGioHang.sanPham.gia, 0, 'COMMA', 0, 'POINT') +' đ'}"></th>
+												
+												<th>
+													<input type="hidden"       
+								                           th:name="|dsCT[${varStatus.index}].sanPham.id|"                        
+								                           th:value="${CTGioHang.sanPham.id}" />
+													
+													<input th:name="|dsCT[${varStatus.index}].soLuong|" 
+														   th:value="${CTGioHang.soLuong}" type="number" id="quantity" min="0" style="width: 5rem"/>
+													<!-- <script>
+														$("#quantity").keypress(function (evt) {
+															evt.preventDefault();
+															});
+		
+															$(document).keydown(function(e) {
+															    var elid = $(document.activeElement).hasClass('textInput');
+															   console.log(e.keyCode + ' && ' + elid);
+															    //prevent both backspace and delete keys
+															    if ((e.keyCode === 8 || e.keyCode === 46) && !elid) {
+															        return false;
+															    };
+															});
+													</script> -->
+												</th>
+												<th th:text="${#numbers.formatDecimal(CTGioHang.thanhTien, 0, 'COMMA', 0, 'POINT') +' đ'}"></th>
+												
+												<th><a th:href="@{/deleteFromCart(id=${CTGioHang.sanPham.id})}"  
+														onclick="if (!(confirm('Bạn có chắc muốn xóa món hàng này khỏi giỏ?'))) return false">
+												   <i class="fa fa-trash" style="font-size: 1.5em;"></i></a>
+												</th>
+											</tr>
+										</th:block>
+									</table>
+								</div>
+								<div class="clearfix text-right">
+									<span><b>Tổng thanh toán:</b></span>
+									<span class="pay-price ng-binding" th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT') +' đ'}"></span>
+								</div>
+								<div class="button text-right">
+									<input type="submit" class="btn btn-primary" value="CẬP NHẬT GIỎ HÀNG" onclick="notice()"/>
+									<script>
+										function notice() {
+										  alert("Cập nhật thành công!");
+										}
+									</script>
+									<a class="btn btn-primary" href="/">Tiếp tục mua hàng</a>
+									<a class="btn btn-primary" href="/checkout">Tiến hành thanh toán</a>
+								</div>
+								
+							</div>
+						</div>
+						</form>
+				    </th:block>
+				</div>
+            </div>
+        </div>
+    </div>

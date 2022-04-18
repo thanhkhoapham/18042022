@@ -1,0 +1,95 @@
+<div class="main" th:fragment="products">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-12">
+					<section class="product-content clearfix">
+						<h1 class="title clearfix"><span>SẢN PHẨM</span></h1>
+						<!--========================begin: mục trang sp ==============================================-->
+							<nav class="navbar navbar-default product-filter">
+								<div class="limit">
+									<span>Sản phẩm/trang</span>
+									<select id="lblimit" name="lblimit" class="nb_item" onchange="window.location.href = this.options[this.selectedIndex].value">
+												<option>10</option>
+												<option>12</option>
+												<option selected="selected" value="?limit=20">20</option>
+												<option>50</option>
+												<option>100</option>
+												<option>250</option>
+									</select>
+								</div>
+								<div class="sort">
+									<span>Sắp xếp</span>
+									<select class="selectProductSort" id="lbsort" onchange="window.location.href = this.options[this.selectedIndex].value">
+												<option>Mặc định</option>
+												<option>Giá tăng dần</option>
+												<option>Giá giảm dần</option>
+												<option>Tên sản phẩm: A to Z</option>
+												<option>Tên sản phẩm: Z to A</option>
+									</select>
+								</div>
+							</nav>
+						<!--========================end:  mục trang sp  ==============================================-->
+						<!--==========================begin: Item sản phẩm===================================-->	
+							<div class="product-block product-grid row clearfix">
+								<th:block th:each="product : ${products}">
+									<div class="col-md-3 col-sm-3 col-xs-12 product-resize product-item-box fixheight" style="height: 442px; padding: 2rem">
+										<div class="product-item">
+											<div class="image image-resize" style="height: 265px;">
+												<a href="#" th:title="${product.tenSanPham}">
+													<img th:src="${product.UrlHinhAnh}" class="img-responsive">
+												</a>
+												<div class="view-more clearfix">
+													<a th:href="@{/product/{id}(id = ${product.id})}" class="btn-quickview">Xem thêm</a>
+												</div>
+													<!-- <span class="promotion">-10%</span> -->
+											</div>
+											<div class="right-block">
+												<h2 class="name">
+													<a href="#" th:title="${product.tenSanPham}" th:text="${product.tenSanPham}"></a>
+												</h2>
+												<div class="ratings clearfix">
+													<div class="rating-box">
+														<div class="rating"></div>
+													</div>
+												</div>
+												<div class="price">
+														<span class="price-new" th:text="${#numbers.formatDecimal(product.gia, 0, 'COMMA', 0, 'POINT') +' đ'}"></span>
+														<!-- <span class="price-old">275.000&nbsp;₫</span> -->
+												</div>
+												<div class="box-inner clearfix">
+													<ul class="add-to-links">
+														<li><a class="add-cart" th:href="@{/addToCart(id=${product.id})}"></a></li>
+														<!-- <li><a class="add-wishlist" href="#"></a></li>
+														<li><a class="add-compare" href="#"></a></li> -->
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</th:block>									
+							</div>
+							<!--==========================end: Item sản phẩm===================================-->
+							<!--========================== begin: phân trang ===================================-->
+							<div class="navigation">
+									<ul class="pagination">
+										<li>
+											<a href="trangchu.html" aria-label="Previous">
+												<span aria-hidden="true">«</span>
+											</a>
+										</li>
+												<li class="active"><a href="trangchu.html">1</a></li>
+												<li><a href="trang2.html">2</a></li>
+												<li><a href="trang3.html">3</a></li>
+										<li>
+											<a href="trang3.html" aria-label="Next">
+												<span aria-hidden="true">»</span>
+											</a>
+										</li>
+									</ul>
+							</div>
+							<!--========================== end: phân trang ===================================-->
+					</section>						
+                </div>
+            </div>
+        </div>
+    </div>
